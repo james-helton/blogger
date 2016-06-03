@@ -5,4 +5,7 @@
       data: {confirm: "Confirm deletion of '#{@article.title}'?"} %>
   <%= link_to "Edit Article", edit_article_path(@article) %>
 </p>
+<h3>Comments <%= "(#{@article.comments.size})" if @article.comments.size > 0 %></h3>
+<%= render partial: 'articles/comment', collection: @article.comments %>
+<%= render partial: 'comments/form' %>
 <p><%= link_to "<< Back to Article List", articles_path %></p>
