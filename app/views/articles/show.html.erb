@@ -6,6 +6,8 @@
   <% end %>
 </p>
 <p><br /></p>
+<p><%= (link_to (image_tag @article.image.url(:thumb)), @article.image.url) if @article.image.exists? %>
+<p><br /></p>
 <p><%= @article.body %></p>
 <p><br /></p>
 <p>
