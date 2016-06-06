@@ -6,10 +6,10 @@
 </ul>
 <p><br /></p>
 <p>
-  <%= link_to "Delete Tag", tag_path(@tag), method: :delete, 
-      data: {confirm: "Confirm deletion of '#{@tag.name}'?"} %>
-  |
-  Edit Tag
+  <% if logged_in? %>
+    <%= link_to "Delete Tag", tag_path(@tag), method: :delete, 
+        data: {confirm: "Confirm deletion of '#{@tag.name}'?"} %>
+  <% end %>
 <p>
   &gt;&gt;
   <%= link_to "Articles", articles_path %>
