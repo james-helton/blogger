@@ -1,5 +1,9 @@
 <h1><%= @article.title %></h1>
 <p>
+  Author: 
+  <%= @article.author.username.capitalize %>
+</p>
+<p>
   Tags:
   <% @article.tags.each do |t| %>
     <%= link_to t.name, tag_path(t) %>
@@ -10,7 +14,7 @@
 <p><br /></p>
 <p><%= @article.body %></p>
 <p><br /></p>
-<% if logged_in? %>
+<% if logged_in? && current_user == @article.author %>
   <p>
     <%= link_to "Delete Article", article_path(@article), method: :delete, 
         data: {confirm: "Confirm deletion of '#{@article.title}'?"} %>

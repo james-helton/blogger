@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
   before_action :require_login, except: [:show, :index]
+  before_action :owner?, only: [:edit, :update, :destroy]
   include ArticlesHelper
 
   def index
@@ -40,4 +41,13 @@ class ArticlesController < ApplicationController
     flash.notice = "Article '#{@article.title}' Updated!"
     redirect_to article_path(@article)
   end
+
+  private
+
+    def owner?
+      unless logged_in? && current_user == Article.find(params[:id]).author
+        redirect_to article_path(params[:id])
+        return false
+      end
+    end
 end
